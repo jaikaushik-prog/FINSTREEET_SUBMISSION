@@ -1,11 +1,11 @@
 # Config module - centralized constants
 """
-Configuration constants for the IRCON.NS trading strategy.
+Configuration constants for the SONATSOFTW.NS trading strategy.
 All tunable parameters in one place for easy reproducibility.
 """
 
 # Asset
-TICKER = "IRCON.NS"
+TICKER = "SONATSOFTW.NS"
 
 # Date Range
 DATA_START = "2025-11-01"
@@ -22,4 +22,4 @@ WINDOW_SIZE_DAYS = 20
 
 # Trade Parameters
 HOLD_HORIZON = 1
-ML_VETO_THRESHOLD = 0.35
+ML_VETO_THRESHOLD = 0.40
