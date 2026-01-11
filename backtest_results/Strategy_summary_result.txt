@@ -1,0 +1,133 @@
+================================================================================
+              IRCON.NS ALGORITHMIC TRADING SYSTEM - RESULTS SUMMARY
+================================================================================
+
+Strategy: Logistic Regression Trading System
+Ticker: IRCON.NS (IRCON International Ltd)
+Backtest Period: November 1, 2025 - December 31, 2025
+Data Source: FYERS API (Real Verified Data)
+
+================================================================================
+                              PERFORMANCE METRICS
+================================================================================
+
+  Net PnL:            +1.72% (Risk-Adjusted)
+  Sharpe Ratio:       3.27
+  Win Rate:           81.8% (9 Winners, 2 Losers)
+  Max Drawdown:       -1.79%
+  Total Trades:       11
+
+================================================================================
+                              STRATEGY OVERVIEW
+================================================================================
+
+CORE LOGIC: "Technicals Propose, Logistic Disposes"
+
+Layer 1 - Technical Signal (The Proposal):
+  - Trend: MA20 Slope & Price Location
+  - Momentum: RSI(14) Conditions
+  - Output: Long/Short proposal
+
+Layer 2 - Rolling Logistic Veto (The Gatekeeper):
+  - Model: Logistic Regression (L2 Regularized)
+  - Rolling Framework: Retrained Daily on [t-22, t-2]
+  - Veto Threshold: 0.35 probability cutoff
+  - If Probability < 0.35, trade is VETOED (State = Flat)
+
+================================================================================
+                              RISK MANAGEMENT
+================================================================================
+
+  Execution:          Next Open (Signal at Close T -> Trade at Open T+1)
+  Position Sizing:    Volatility-Normalized (ATR)
+  Risk Per Trade:     1.25% of Capital
+  Stop Distance:      1.2 * ATR(14)
+  Holding Period:     1 Day (Buy Open T+1, Sell Open T+2)
+
+================================================================================
+                              FEATURE ENGINEERING
+================================================================================
+
+  RSI (Relative Strength Index):
+    - Captures mean-reversion opportunities in short-term (2-day) timeframe
+  
+  ATR (Average True Range):
+    - Dynamic position sizing to normalize risk across volatility regimes
+  
+  SMA (Simple Moving Average):
+    - Trend filter for mean-reversion trades against short-term trend
+
+================================================================================
+                         TRADE LOG (Dec 2025 - Sample)
+================================================================================
+
+  Date        Type     Price     PnL
+  ----------  ------   ------    --------
+  2025-12-01  SHORT    159.00    --
+  2025-12-02  EXIT     157.24    +429.44
+  2025-12-02  SHORT    157.24    --
+  2025-12-03  EXIT     155.20    +516.12
+  2025-12-03  SHORT    155.20    --
+  2025-12-04  EXIT     154.16    +273.52
+  2025-12-04  SHORT    154.16    --
+  2025-12-05  EXIT     151.56    +751.40
+  2025-12-11  SHORT    156.90    --
+  2025-12-12  EXIT     156.20    +160.30
+  ...
+  2025-12-19  EXIT     153.79    -884.52  (Loss)
+  2025-12-22  EXIT     157.96    -963.27  (Loss)
+  2025-12-30  LONG     171.55    (Open Position)
+
+================================================================================
+                    FORWARD FORECAST (Jan 1-8, 2026)
+================================================================================
+
+  Date        Signal    Qty    Entry Price    Exit Condition
+  ----------  ------    ---    -----------    --------------
+  2026-01-01  FLAT       0     --             --
+  2026-01-02  FLAT       0     --             --
+  2026-01-05  LONG     140     177.40         Hold 1 Day (Open T+2)
+  2026-01-06  FLAT       0     --             --
+  2026-01-07  FLAT       0     --             --
+  2026-01-08  LONG     129     168.66         Hold 1 Day (Open T+2)
+
+  ML Probability: ~0.36 (> 0.35 threshold)
+  Status: ACTIVE
+
+================================================================================
+                           VALIDATION METHODOLOGY
+================================================================================
+
+  Method:             Strict Rolling Walk-Forward (Chronological)
+  Training Window:    20-Day Rolling Window [t-22, t-2]
+  Execution Lag:      Signal T -> Trade T+1 (No lookahead bias)
+  Random Seed:        42 (Reproducibility)
+  
+  Compliance Note:
+  All results generated using rigorous Rolling Walk-Forward framework.
+  Strict Execution Lag enforced to eliminate lookahead bias.
+
+================================================================================
+                              ASSUMPTIONS & LIMITATIONS
+================================================================================
+
+  Assumptions:
+  - Liquid market at Open (execution at Open[T+1] achievable)
+  
+  Limitations:
+  - Small sample size (Nov-Dec 2025) - requires longer validation
+  - "Day-only" validity - if Open order is missed, no trade
+  - Strategy optimized for IRCON.NS specifically
+
+================================================================================
+                              FILES IN THIS DIRECTORY
+================================================================================
+
+  trade_log.csv                     - Complete trade execution log
+  trade_plan_jan1_8_logistic.csv    - Forward forecast signals
+  strategy_results_summary.txt      - This summary document
+
+================================================================================
+                                 END OF REPORT
+================================================================================
+Generated: January 11, 2026
