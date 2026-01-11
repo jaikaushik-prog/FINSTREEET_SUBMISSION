@@ -1,0 +1,8 @@
+{"level":"ERROR","location":"[get_call:164] fyersModel","message":{"API":"/history","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-01-10 11:38:43,569+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:164] fyersModel","message":{"API":"/history","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-01-10 11:41:01,845+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:164] fyersModel","message":{"API":"/history","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-01-10 11:41:43,871+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:164] fyersModel","message":{"API":"/history","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-01-10 11:42:23,834+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:164] fyersModel","message":{"API":"/history","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-01-10 11:43:24,825+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:164] fyersModel","message":{"API":"/history","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-01-10 11:44:19,135+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:146] fyersModel","message":{"API":"/history","Error":{"code":-16,"message":"Could not authenticate the user","s":"error"}},"timestamp":"2026-01-11 11:32:06,929+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:146] fyersModel","message":{"API":"/history","Error":{"code":-16,"message":"Could not authenticate the user","s":"error"}},"timestamp":"2026-01-11 11:32:15,346+0530","service":"FyersAPI"}
