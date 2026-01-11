@@ -1,6 +1,8 @@
 # Data loading module
 """
 Handles data loading from Fyers API or yfinance fallback.
+all the computations and results are from data from fyers and kindly put the access token and appid and secretid
+in fyers_secrets.json to use fyers to backtest
 """
 
 import os
@@ -50,3 +52,4 @@ def load_data(ticker, start_date, end_date, fyers_secrets_path=None):
     df.index = pd.to_datetime(df.index)
     print(f"Downloaded {len(df)} rows total")
     return df
+
