@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-IRCON.NS Trading Strategy - Main Entry Point
+SONATSOFTW.NS Trading Strategy - Main Entry Point
 
 End-to-end ML-driven trading system using rolling logistic regression
 and ATR-based risk management.
@@ -41,7 +41,7 @@ def main():
     # STEP 1: Load Data
     # ============================================================
     secrets_path = os.path.join(os.path.dirname(__file__), 'fyers_secrets.json')
-    df_full = load_data(TICKER, start_date='2025-11-01', end_date='2026-01-10', fyers_secrets_path=secrets_path)
+    df_full = load_data(TICKER, start_date='2025-11-01', end_date='2025-12-31', fyers_secrets_path=secrets_path)
     
     # Slice to backtest period
     mask_stress = (df_full.index >= DATA_START) & (df_full.index <= DATA_END)
@@ -114,6 +114,28 @@ def main():
     print(f"Max Drawdown: {final_stats['Max Drawdown']:.2f}%")
     print(f"Total Trades: {final_stats['Total Trades']}")
     print(f"Win Rate: {final_stats['Win Rate']:.1f}%")
+    
+    # Buy & Hold Comparison
+    import numpy as np
+    bh_start_price = experiment_signals['Close'].iloc[0]
+    bh_end_price = experiment_signals['Close'].iloc[-1]
+    bh_return_pct = ((bh_end_price - bh_start_price) / bh_start_price) * 100
+    bh_return_abs = (bh_end_price - bh_start_price) / bh_start_price * INITIAL_CAPITAL
+    
+    # Buy & Hold Drawdown
+    bh_equity = (experiment_signals['Close'] / bh_start_price) * INITIAL_CAPITAL
+    bh_cummax = bh_equity.cummax()
+    bh_dd = ((bh_equity - bh_cummax) / bh_cummax).min() * 100
+    
+    # Buy & Hold Sharpe
+    bh_daily_rets = experiment_signals['Close'].pct_change().dropna()
+    bh_sharpe = (bh_daily_rets.mean() / bh_daily_rets.std() * np.sqrt(252)) if bh_daily_rets.std() != 0 else 0
+    
+    print("\n--- BUY & HOLD COMPARISON ---")
+    print(f"B&H Return: {bh_return_pct:.2f}% ({bh_return_abs:.2f})")
+    print(f"B&H Max Drawdown: {bh_dd:.2f}%")
+    print(f"B&H Sharpe Ratio: {bh_sharpe:.2f}")
+    print(f"Strategy vs B&H: {final_stats['Return %'] - bh_return_pct:+.2f}% alpha")
     
     # Save results
     results_dir = os.path.join(os.path.dirname(__file__), 'backtest_results')
