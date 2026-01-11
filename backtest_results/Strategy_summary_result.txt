@@ -1,9 +1,9 @@
 ================================================================================
-              IRCON.NS ALGORITHMIC TRADING SYSTEM - RESULTS SUMMARY
+           SONATSOFTW.NS ALGORITHMIC TRADING SYSTEM - RESULTS SUMMARY
 ================================================================================
 
 Strategy: Logistic Regression Trading System
-Ticker: IRCON.NS (IRCON International Ltd)
+Ticker: SONATSOFTW.NS (Sonata Software Ltd)
 Backtest Period: November 1, 2025 - December 31, 2025
 Data Source: FYERS API (Real Verified Data)
 
@@ -11,11 +11,25 @@ Data Source: FYERS API (Real Verified Data)
                               PERFORMANCE METRICS
 ================================================================================
 
-  Net PnL:            +1.72% (Risk-Adjusted)
-  Sharpe Ratio:       3.27
-  Win Rate:           81.8% (9 Winners, 2 Losers)
-  Max Drawdown:       -1.79%
-  Total Trades:       11
+  Net PnL:            +1793.75 (+1.79%)
+  Sharpe Ratio:       3.25
+  Win Rate:           57.1% (8 Winners, 6 Losers)
+  Max Drawdown:       -1.58%
+  Total Trades:       14
+
+================================================================================
+                          BUY & HOLD COMPARISON
+================================================================================
+
+  Metric              Strategy        Buy & Hold      Advantage
+  ----------------    -----------     -----------     ------------------
+  Return              +1.79%          +0.29%          +1.50% alpha
+  Sharpe Ratio        3.25            0.26            12.5x better
+  Max Drawdown        -1.58%          -7.07%          4.5x lower risk
+
+  VERDICT: Strategy significantly outperforms passive buy & hold with
+           higher returns, better risk-adjusted performance, and lower
+           drawdown exposure.
 
 ================================================================================
                               STRATEGY OVERVIEW
@@ -31,8 +45,8 @@ Layer 1 - Technical Signal (The Proposal):
 Layer 2 - Rolling Logistic Veto (The Gatekeeper):
   - Model: Logistic Regression (L2 Regularized)
   - Rolling Framework: Retrained Daily on [t-22, t-2]
-  - Veto Threshold: 0.35 probability cutoff
-  - If Probability < 0.35, trade is VETOED (State = Flat)
+  - Veto Threshold: 0.40 probability cutoff
+  - If Probability < 0.40, trade is VETOED (State = Flat)
 
 ================================================================================
                               RISK MANAGEMENT
@@ -58,41 +72,19 @@ Layer 2 - Rolling Logistic Veto (The Gatekeeper):
     - Trend filter for mean-reversion trades against short-term trend
 
 ================================================================================
-                         TRADE LOG (Dec 2025 - Sample)
-================================================================================
-
-  Date        Type     Price     PnL
-  ----------  ------   ------    --------
-  2025-12-01  SHORT    159.00    --
-  2025-12-02  EXIT     157.24    +429.44
-  2025-12-02  SHORT    157.24    --
-  2025-12-03  EXIT     155.20    +516.12
-  2025-12-03  SHORT    155.20    --
-  2025-12-04  EXIT     154.16    +273.52
-  2025-12-04  SHORT    154.16    --
-  2025-12-05  EXIT     151.56    +751.40
-  2025-12-11  SHORT    156.90    --
-  2025-12-12  EXIT     156.20    +160.30
-  ...
-  2025-12-19  EXIT     153.79    -884.52  (Loss)
-  2025-12-22  EXIT     157.96    -963.27  (Loss)
-  2025-12-30  LONG     171.55    (Open Position)
-
-================================================================================
                     FORWARD FORECAST (Jan 1-8, 2026)
 ================================================================================
 
-  Date        Signal    Qty    Entry Price    Exit Condition
-  ----------  ------    ---    -----------    --------------
-  2026-01-01  FLAT       0     --             --
-  2026-01-02  FLAT       0     --             --
-  2026-01-05  LONG     140     177.40         Hold 1 Day (Open T+2)
-  2026-01-06  FLAT       0     --             --
-  2026-01-07  FLAT       0     --             --
-  2026-01-08  LONG     129     168.66         Hold 1 Day (Open T+2)
+  Date        Raw Signal    ML Prob    Threshold    Status
+  ----------  ----------    -------    ---------    ------
+  2026-01-01  LONG          0.3971     0.40         VETO
+  2026-01-02  LONG          0.3927     0.40         VETO
+  2026-01-05  LONG          0.3964     0.40         VETO
+  2026-01-06  SHORT         0.4005     0.40         PASS ✓
+  2026-01-07  LONG          0.3773     0.40         VETO
+  2026-01-08  LONG          0.3829     0.40         VETO
 
-  ML Probability: ~0.36 (> 0.35 threshold)
-  Status: ACTIVE
+  Active Signal: SHORT on Jan 6 (ML Prob 0.4005 > 0.40 threshold)
 
 ================================================================================
                            VALIDATION METHODOLOGY
@@ -117,7 +109,7 @@ Layer 2 - Rolling Logistic Veto (The Gatekeeper):
   Limitations:
   - Small sample size (Nov-Dec 2025) - requires longer validation
   - "Day-only" validity - if Open order is missed, no trade
-  - Strategy optimized for IRCON.NS specifically
+  - Strategy optimized for SONATSOFTW.NS specifically
 
 ================================================================================
                               FILES IN THIS DIRECTORY
