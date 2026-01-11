@@ -1,13 +1,25 @@
-# IRCON.NS Algorithmic Trading System
+# SONATSOFTW.NS Algorithmic Trading System
 
 ## Overview
-End-to-end ML-driven trading system for IRCON.NS using rolling logistic regression and ATR-based risk management.
+End-to-end ML-driven trading system for SONATSOFTW.NS using rolling logistic regression and ATR-based risk management.
 
 **Performance (Nov-Dec 2025):**
-- **Net PnL**: +1.72% (Risk-Managed)
-- **Sharpe Ratio**: 3.27
-- **Win Rate**: 81.8%
+- **Net PnL**: +1.79% (Risk-Managed)
+- **Sharpe Ratio**: 3.25
+- **Win Rate**: 57.1%
+- **Max Drawdown**: -1.58%
+- **Alpha vs Buy & Hold**: +1.50%
 - **Method**: Strict Rolling Walk-Forward (Next-Open Execution)
+
+---
+
+## Buy & Hold Comparison
+
+| Metric | Strategy | Buy & Hold |
+|:-------|:--------:|:----------:|
+| Return | +1.79% | +0.29% |
+| Sharpe | 3.25 | 0.26 |
+| Max DD | -1.58% | -7.07% |
 
 ---
 
@@ -15,35 +27,36 @@ End-to-end ML-driven trading system for IRCON.NS using rolling logistic regressi
 
 ```
 submit_quant/
-├── run_strategy.py              ← 🚀 MAIN ENTRY POINT - Run this
+├── run_strategy.py              ← Main entry point
 ├── requirements.txt
-├── Explanation_Document.md
 ├── README.md
+├── SETUP_GUIDE.md
+├── Explanation_Document.md
 │
 ├── src/
 │   ├── data/
-│   │   └── data_loader.py       # Data loading (Fyers/yfinance)
+│   │   └── data_loader.py       # Fyers/yfinance data loading
 │   ├── features/
-│   │   └── feature_engineer.py  # Technical indicators
+│   │   └── feature_engineer.py  # RSI, SMA, ATR, Bollinger
 │   ├── signals/
-│   │   └── signal_generator.py  # Signal generation
+│   │   └── signal_generator.py  # Signal generation logic
 │   ├── models/
-│   │   └── logistic_filter.py   # ML filter
+│   │   └── logistic_filter.py   # ML veto filter
 │   ├── execution/
 │   │   └── execution_engine.py  # Backtest engine
 │   ├── backtest/
 │   │   └── backtester.py        # Trade plan generator
 │   ├── utils/
-│   │   └── config.py            # ⚙️ All configuration constants
+│   │   └── config.py            # All configuration constants
 │   └── modules/
 │       └── fyers_data_client.py # Fyers API integration
 │
 ├── backtest_results/
-|        ├── trade_log.csv
-|        ├── trade_plan_jan1_8_logistic.csv
-|        └── strategy_results_summary.txt
-│
-└── logs/    # Fyers API logs```
+│   ├── trade_log.csv
+│   ├── trade_plan_jan1_8_logistic.csv
+│   └── strategy_results_summary.txt
+└── logs/                        # Fyers API logs
+```
 
 ---
 
@@ -62,7 +75,7 @@ python run_strategy.py
 - **ML Filter**: Rolling logistic regression with 2-day lag (no lookahead)
 - **Position Sizing**: ATR-based (1.25% risk per trade)
 - **Execution**: Next-day open entry, 1-day hold
-- **Veto Threshold**: 0.35 probability cutoff
+- **Veto Threshold**: 0.40 probability cutoff
 
 ---
 
@@ -72,4 +85,5 @@ python run_strategy.py
 - Deterministic walk-forward training
 - No external data dependencies
 - Configurable via `src/utils/config.py`
+
 
