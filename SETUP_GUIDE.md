@@ -1,4 +1,4 @@
-# IRCON.NS Trading Strategy - Setup & Execution Guide
+# SONATSOFTW.NS Trading Strategy - Setup & Execution Guide
 
 ## 📁 Folder Structure
 
@@ -28,11 +28,10 @@ submit_quant/
 │       └── fyers_data_client.py # Fyers API integration
 │
 ├── backtest_results/
-|        ├── trade_log.csv
-|        ├── trade_plan_jan1_8_logistic.csv
-|        └── strategy_results_summary.txt
-│
-└── logs/                        # Fyers API logs
+│   ├── trade_log.csv
+│   ├── trade_plan_jan1_8_logistic.csv
+│   └── strategy_results_summary.txt  
+└── logs/                        # Fyers API logs (exclude from submission)
 ```
 
 ---
@@ -101,14 +100,20 @@ python run_strategy.py
 ============================================================
  VARIANT D (LOGISTIC REGRESSION) - STRICT ROLLING
 ============================================================
-Asset: IRCON.NS
+Asset: SONATSOFTW.NS
 ...
 --- PERFORMANCE METRICS ---
-Total PnL: 1724.60
-Sharpe Ratio: 3.27
-Max Drawdown: -1.79%
-Total Trades: 11
-Win Rate: 81.8%
+Total PnL: 1793.75
+Sharpe Ratio: 3.25
+Max Drawdown: -1.58%
+Total Trades: 14
+Win Rate: 57.1%
+
+--- BUY & HOLD COMPARISON ---
+B&H Return: 0.29% (292.64)
+B&H Max Drawdown: -7.07%
+B&H Sharpe Ratio: 0.26
+Strategy vs B&H: +1.50% alpha
 ...
 FINISHED_LOGISTIC
 ```
@@ -120,6 +125,7 @@ FINISHED_LOGISTIC
 | File | Description |
 |------|-------------|
 | `backtest_results/trade_log.csv` | Complete trade history |
+| `backtest_results/strategy_results_summary.txt` | Performance summary |
 | `trade_plan_jan1_8_logistic.csv` | Forecast signals for Jan 1-8 |
 
 ---
@@ -130,13 +136,13 @@ Edit `src/utils/config.py` to customize:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `TICKER` | `"IRCON.NS"` | Stock symbol |
+| `TICKER` | `"SONATSOFTW.NS"` | Stock symbol |
 | `INITIAL_CAPITAL` | `100000` | Starting capital (INR) |
 | `DATA_START` | `'2025-11-01'` | Backtest start date |
 | `DATA_END` | `'2025-12-31'` | Backtest end date |
 | `WARMUP_DAYS` | `20` | Days before ML starts |
 | `WINDOW_SIZE_DAYS` | `20` | ML training window |
-| `ML_VETO_THRESHOLD` | `0.35` | Probability cutoff |
+| `ML_VETO_THRESHOLD` | `0.40` | Probability cutoff |
 | `HOLD_HORIZON` | `1` | Days to hold each trade |
 
 ---
@@ -149,4 +155,5 @@ Edit `src/utils/config.py` to customize:
 | `yfinance` rate limit | Wait 1 minute and retry |
 | FYERS auth failed | Check `fyers_secrets.json` values |
 | Empty data | Ensure market was open on requested dates |
+
 
