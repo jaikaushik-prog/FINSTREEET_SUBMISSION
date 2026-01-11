@@ -15,34 +15,35 @@ End-to-end ML-driven trading system for IRCON.NS using rolling logistic regressi
 
 ```
 submit_quant/
-├── run_strategy.py              ← Main entry point
+├── run_strategy.py              ← 🚀 MAIN ENTRY POINT - Run this
 ├── requirements.txt
-├── README.md
-├── SETUP_GUIDE.md
 ├── Explanation_Document.md
+├── README.md
 │
 ├── src/
 │   ├── data/
-│   │   └── data_loader.py       # Fyers/yfinance data loading
+│   │   └── data_loader.py       # Data loading (Fyers/yfinance)
 │   ├── features/
-│   │   └── feature_engineer.py  # RSI, SMA, ATR, Bollinger
+│   │   └── feature_engineer.py  # Technical indicators
 │   ├── signals/
-│   │   └── signal_generator.py  # Signal generation logic
+│   │   └── signal_generator.py  # Signal generation
 │   ├── models/
-│   │   └── logistic_filter.py   # ML veto filter
+│   │   └── logistic_filter.py   # ML filter
 │   ├── execution/
 │   │   └── execution_engine.py  # Backtest engine
 │   ├── backtest/
 │   │   └── backtester.py        # Trade plan generator
 │   ├── utils/
-│   │   └── config.py            # All configuration constants
+│   │   └── config.py            # ⚙️ All configuration constants
 │   └── modules/
 │       └── fyers_data_client.py # Fyers API integration
 │
-├── backtest_results/            # Trade logs
-├── experiments/                 # Debug & research files
-└── logs/                        # API logs
-```
+├── backtest_results/
+|        ├── trade_log.csv
+|        ├── trade_plan_jan1_8_logistic.csv
+|        └── strategy_results_summary.txt
+│
+└── logs/    # Fyers API logs```
 
 ---
 
@@ -71,3 +72,4 @@ python run_strategy.py
 - Deterministic walk-forward training
 - No external data dependencies
 - Configurable via `src/utils/config.py`
+
