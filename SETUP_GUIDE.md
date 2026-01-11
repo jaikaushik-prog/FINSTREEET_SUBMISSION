@@ -28,9 +28,10 @@ submit_quant/
 │       └── fyers_data_client.py # Fyers API integration
 │
 ├── backtest_results/
-│   └── trade_log.csv
+|        ├── trade_log.csv
+|        ├── trade_plan_jan1_8_logistic.csv
+|        └── strategy_results_summary.txt
 │
-├── experiments/                 # Debug/research files (not for submission)
 └── logs/                        # Fyers API logs
 ```
 
@@ -148,3 +149,4 @@ Edit `src/utils/config.py` to customize:
 | `yfinance` rate limit | Wait 1 minute and retry |
 | FYERS auth failed | Check `fyers_secrets.json` values |
 | Empty data | Ensure market was open on requested dates |
+
