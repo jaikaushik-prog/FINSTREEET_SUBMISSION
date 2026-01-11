@@ -1,0 +1,6 @@
+pandas>=2.0.0
+numpy
+scikit-learn>=1.0.0
+yfinance>=0.2.0
+fyers-apiv3>=3.0.0
+pyotp
